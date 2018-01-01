@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="RESTSuite" verbose="1">
+
+    <test name="REST API Tests" preserve-order="true" enabled="true">
+        <classes>
+            <class name="com.rest.autotests.tests.AppUserTestCase"/>
+            <class name="com.rest.autotests.tests.CalendarTestCase"/>
+        </classes>
+    </test>
+</suite>

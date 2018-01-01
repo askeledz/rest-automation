@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="RESTSuite" verbose="1">
+	<test name="REST API Single test" preserve-order="true"
+		enabled="true">
+		<classes>
+			<!--Objects tests -->
+			<class name="com.rest.autotests.tests.AppUserTestCase">
+			<methods>
+				<!--<exclude name="testCreateObjectWithInvalidBody" />-->
+				<include name="testCreateSingleObject" />
+				<include name="testCreateSingleObject2" />
+				<!--<exclude name="testCreateSingleNullObject" />-->
+			</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

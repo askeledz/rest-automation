@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>REST</artifactId>
+        <groupId>com.rest.autotests.tests</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <testSuite>testsuite.xml</testSuite>
+    </properties>
+
+    <artifactId>functional_tests</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.rest.autotests.tests</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20.1</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>suites/${testSuite}</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <properties>
+                        <!--Set usedefaultlisteners to FALSE to start using custom listener-->
+                        <property>
+                            <name>usedefaultlisteners</name>
+                            <value>false</value>
+                        </property>
+                        <property>
+                            <name>listener</name>
+                            <value>
+                                com.rest.autotests.core.test.listeners.SuiteListener,com.rest.autotests.core.test.listeners.TestListener,com.rest.autotests.core.util.reporting.MyReporterListener
+                            </value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>testSuite</id>
+            <activation>
+                <property>
+                    <name>testSuite</name>
+                    <value>testsuite.xml</value>
+                </property>
+            </activation>
+        </profile>
+
+    </profiles>
+
+
+</project>
