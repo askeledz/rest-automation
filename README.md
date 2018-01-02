@@ -56,7 +56,7 @@ sudo killall -HUP mDNSResponder (clear DNS cache)
 MAVEN
 **************************
 mvn clean test -pl RESTtest_functional -am -DtestSuite=testsuite.xml
-mvn clean test -pl RESTtest_functional -am -DtestSuite=singletest.xml > ~/Documents/`date +\%Y\%m\%d\%H\%M\%S`-COBE_REST_API_Tests_running.log 2>&1
+mvn clean test -pl RESTtest_functional -am -DtestSuite=singletest.xml > ~/Documents/`date +\%Y\%m\%d\%H\%M\%S`-REST_API_Tests_running.log 2>&1
 
 
 REPORTING
