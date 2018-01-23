@@ -51,9 +51,9 @@ public class CalendarTestCase extends CRUDTestCase {
     @Test(description = "Create Appointment", groups = {"Regression"})
     @Override
     public void testCreateObject() {
-        Response resp = CrudHelper.createObjectAndReturnResponse(new CreateAppointment(10253,"1455986092121"
+        Response resp = CrudHelper.createObjectAndReturnResponse(new CreateAppointment(27554669,"1455986092121"
                 ,  new Adress("ime", "thoroughfare", "subThoroughfare", "postalcode", "locality", "isOcountryCode")
-                , "1455986092129",null, false, "NEVER", false, null, null, null, "TRAINING", 10255, "Opis" ));
+                , "1455986092129",null, false, "NEVER", false, null, null, null, "TRAINING", 27554670, "Opis" ));
 
         String body = resp.getBody().asString();
         System.out.println("RESPONSE: " + body.toString());

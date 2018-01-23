@@ -51,16 +51,16 @@ public class AppUserTestCase extends CRUDTestCase {
     @Test(description = "Request AuthToken for Username And Password", groups = {"Regression"})
     @Override
     public void testCreateObject() {
-        Response resp = CrudHelper.createObjectAndReturnResponse(new RequestAuthTokenForUsernameAndPassword("test0001@gmail.com", "12345"));
+        Response resp = CrudHelper.createObjectAndReturnResponse(new RequestAuthTokenForUsernameAndPassword("clueelf@mailinator.com", "novalozinka"));
         String body = resp.getBody().asString();
         System.out.println("RESPONSE: " + body.toString());
         Assert.assertEquals(body.contains("appUserId") /*Expected value*/, true /*Actual Value*/, "Is it response body contains appUserId?");
         Boolean isSuccess = resp.jsonPath().getBoolean("success");
         Assert.assertTrue(isSuccess);
         String authToken = resp.jsonPath().getString("authToken");
-        Assert.assertEquals(authToken, "d8b3d0ad-ace7-4e66-bcf2-5932959ff339", "AuthToken is OK!");
+        Assert.assertEquals(authToken, "fa0c67b5-e512-4450-b920-5a9a66bde6fe", "AuthToken is OK!");
         int appUserId = resp.jsonPath().getInt("appUserId");
-        Assert.assertEquals(appUserId, 6572, "appUserId is OK!");
+        Assert.assertEquals(appUserId, 27554667, "appUserId is OK!");
     }
 
     @Override
