@@ -1,9 +1,0 @@
-2018-10-30 12:10:00.996 [main] INFO  com.rest.autotests.core.test.listeners.SuiteListener - ----- Test suite started: RESTSuite -----
-2018-10-30 12:10:00.999 [main] INFO  com.rest.autotests.core.test.listeners.SuiteListener - Performing suite setup: RESTSuite
-2018-10-30 12:10:01.013 [main] INFO  com.rest.autotests.core.test.listeners.SuiteListener - ----- Entering test: REST API Tests -----
-2018-10-30 12:10:01.825 [main] INFO  com.rest.autotests.core.test.listeners.SuiteListener - ----- Test started: [TestClass name=class com.rest.autotests.tests.AppUserTestCase]testCreateObject -----
-2018-10-30 12:10:04.565 [main] INFO  com.rest.autotests.core.test.listeners.SuiteListener - Passed test case: testCreateObject
-2018-10-30 12:10:04.571 [main] INFO  com.rest.autotests.core.test.listeners.SuiteListener - ----- Test started: [TestClass name=class com.rest.autotests.tests.CalendarTestCase]testCreateObject -----
-2018-10-30 12:10:05.025 [main] INFO  com.rest.autotests.core.test.listeners.SuiteListener - Passed test case: testCreateObject
-2018-10-30 12:10:05.026 [main] INFO  com.rest.autotests.core.test.listeners.SuiteListener - ----- Leaving test: REST API Tests -----
-2018-10-30 12:10:05.029 [main] INFO  com.rest.autotests.core.test.listeners.SuiteListener - ----- Test suite finished: RESTSuite -----
