@@ -1,5 +1,8 @@
 package com.rest.autotests.core.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.util.Properties;
 
@@ -7,6 +10,9 @@ import java.util.Properties;
  * Created by Andrej Skeledzija 2017
  */
 public class Config {
+
+    //Logger
+    private static final Logger logger = LogManager.getLogger(Config.class);
 
     private static final Properties PROPS = new Properties();
 

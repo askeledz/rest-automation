@@ -9,6 +9,8 @@ import com.jayway.restassured.builder.RequestSpecBuilder;
 import com.jayway.restassured.http.ContentType;
 import com.rest.autotests.core.objects.BasicObject;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Random;
@@ -17,6 +19,9 @@ import java.util.Random;
  * Created by Andrej Skeledzija 2017
  */
 public class Utils {
+
+    //Logger
+    private static final Logger logger = LogManager.getLogger(Utils.class);
 
     private Utils() {
 

@@ -9,6 +9,8 @@ import com.rest.autotests.core.objects.BasicObject;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +24,10 @@ import java.util.regex.Pattern;
  * Created by Andrej Skeledzija 2017
  */
 public class JsonConverter {
+
+
+    //Logger
+    private static final Logger logger = LogManager.getLogger(JsonConverter.class);
 
     private static Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 

@@ -7,6 +7,8 @@ import com.jayway.restassured.config.ObjectMapperConfig;
 import com.jayway.restassured.config.RestAssuredConfig;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static java.lang.System.getProperty;
 
@@ -14,6 +16,9 @@ import static java.lang.System.getProperty;
  * Created by Andrej Skeledzija 2017
  */
 public class ConnConfig {
+
+    //Logger
+    private static final Logger logger = LogManager.getLogger(ConnConfig.class);
 
     private static volatile ConnConfig instance;
     private String serverIp;
