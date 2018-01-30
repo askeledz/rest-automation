@@ -2,10 +2,12 @@ package com.rest.autotests.tests;
 
 import com.jayway.restassured.response.Response;
 import com.rest.autotests.core.objects.BasicObject;
-import com.rest.autotests.core.webservice.appuser.RequestAuthTokenForUsernameAndPassword;
 import com.rest.autotests.core.test.CRUDTestCase;
 import com.rest.autotests.core.util.ConnConfig;
 import com.rest.autotests.core.util.CrudHelper;
+import com.rest.autotests.core.webservice.appuser.RequestAuthTokenForUsernameAndPassword;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -14,6 +16,10 @@ import org.testng.annotations.*;
  * Created by Andrej Skeledzija 2017
  */
 public class AppUserTestCase extends CRUDTestCase {
+
+
+    //Logger
+   private static final Logger logger = LogManager.getLogger(AppUserTestCase.class);
 
 
     @DataProvider
@@ -51,6 +57,8 @@ public class AppUserTestCase extends CRUDTestCase {
     @Test(description = "Request AuthToken for Username And Password", groups = {"Regression"})
     @Override
     public void testCreateObject() {
+
+        logger.trace("The test begins.");
         Response resp = CrudHelper.createObjectAndReturnResponse(new RequestAuthTokenForUsernameAndPassword("clueelf@mailinator.com", "novalozinka"));
         String body = resp.getBody().asString();
         System.out.println("RESPONSE: " + body.toString());

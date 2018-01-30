@@ -7,6 +7,8 @@ import com.rest.autotests.core.test.CRUDTestCase;
 import com.rest.autotests.core.util.ConnConfig;
 import com.rest.autotests.core.util.CrudHelper;
 import com.rest.autotests.core.webservice.calendar.CreateAppointment;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -15,6 +17,10 @@ import org.testng.annotations.*;
  * Created by Andrej Skeledzija 2017
  */
 public class CalendarTestCase extends CRUDTestCase {
+
+
+    //Logger
+    private static final Logger logger = LogManager.getLogger(CalendarTestCase.class);
 
 
     @DataProvider

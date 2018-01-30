@@ -1,9 +1,10 @@
 package com.rest.autotests.core.util.reporting;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.*;
 import org.testng.collections.Lists;
 import org.testng.internal.Utils;
-import org.testng.log4testng.Logger;
 import org.testng.xml.XmlSuite;
 
 import java.io.*;
@@ -12,7 +13,9 @@ import java.text.NumberFormat;
 import java.util.*;
 
 public class MyReporterListener implements IReporter {
-    private static final Logger L = Logger.getLogger(MyReporterListener.class);
+
+    //Logger
+    private static final Logger logger = LogManager.getLogger(MyReporterListener.class);
 
     // ~ Instance fields ------------------------------------------------------
 
@@ -34,7 +37,7 @@ public class MyReporterListener implements IReporter {
         try {
             m_out = createWriter(outdir);
         } catch (IOException e) {
-            L.error("output file", e);
+            logger.error("output file", e);
             return;
         }
         startHtml(m_out);

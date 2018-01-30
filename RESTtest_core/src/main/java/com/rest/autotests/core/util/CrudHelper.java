@@ -8,8 +8,8 @@ import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Response;
 import com.rest.autotests.core.asserts.Assert;
 import com.rest.autotests.core.objects.BasicObject;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -29,14 +29,13 @@ import static org.hamcrest.core.StringContains.containsString;
 public class CrudHelper {
 
 
+    //Logger
+    private static final Logger logger = LogManager.getLogger(CrudHelper.class);
+
+
     public static final int THREADS_NUMBER = 100;
     public static final int THREAD_TIMEOUT = 60 * 60 * 24;
-    private static final Log log;
 
-    static {
-        log = LogFactory.getLog(CrudHelper.class);
-
-    }
 
     public static Long createObjectAndReturnId(BasicObject restObject) {
         System.out.println("ENDPOINT: " + restObject.endpoint );
@@ -171,8 +170,8 @@ public class CrudHelper {
     }
 
     public static BasicObject createObjectFromItsTypeById(BasicObject typeObject, BasicObject object) {
-        //log.info("Creating typeObject ---> " + typeObject.toJson());
-        //log.info("Creating an object  --->" + object.toJson());
+        //logger.info("Creating typeObject ---> " + typeObject.toJson());
+        //logger.info("Creating an object  --->" + object.toJson());
         return (BasicObject) given().body(object).when().post(typeObject.endpoint + "/create-instance/byid/" + typeObject.getId()).as(object.getClass());
     }
 
@@ -201,7 +200,7 @@ public class CrudHelper {
     }
 
     public static void createObjectWithEmptyBody(Class restObjectClass, String body) {
-        //log.info("Creating an object with empty body");
+        //logger.info("Creating an object with empty body");
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -214,7 +213,7 @@ public class CrudHelper {
     }
 
     public static String createObjectWithInvalidBody(Class restObjectClass, String body) {
-        //log.info("Creating an object with invalid body");
+        //logger.info("Creating an object with invalid body");
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -235,7 +234,7 @@ public class CrudHelper {
     }
 
     public static String createObjectWithInvalidBody(Class restObjectClass, String body, String params) {
-        //log.info("Creating an object with invalid body");
+        //logger.info("Creating an object with invalid body");
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -321,7 +320,7 @@ public class CrudHelper {
 
 
     public static BasicObject readSingleObject(Class restObjectClass, String id) {
-        //log.info("Reading single object with id " + id);
+        //logger.info("Reading single object with id " + id);
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -332,7 +331,7 @@ public class CrudHelper {
         }
 
         result = get(((BasicObject) result).endpoint + "/" + id).as(restObjectClass);
-        //log.info("Recieved object is " + result.toString());
+        //logger.info("Recieved object is " + result.toString());
         return (BasicObject) result;
     }
 
@@ -345,7 +344,7 @@ public class CrudHelper {
     }
 
     public static BasicObject readSingleObject(Class restObjectClass, String id, Header header) {
-        //log.info("Reading single object with id " + id);
+        //logger.info("Reading single object with id " + id);
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -356,12 +355,12 @@ public class CrudHelper {
         }
 
         result = given().header(header).get(((BasicObject) result).endpoint + "/" + id).as(restObjectClass);
-        //log.info("Recieved object is " + result.toString());
+        //logger.info("Recieved object is " + result.toString());
         return (BasicObject) result;
     }
 
     public static void readEmptyObject(Class restObjectClass, String id) {
-        //log.info("Reading empty object with id " + id);
+        //logger.info("Reading empty object with id " + id);
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -375,7 +374,7 @@ public class CrudHelper {
     }
 
     public static void readEmptyObject(String endpoint, String id) {
-        //log.info("Reading empty object with id " + id);
+        //logger.info("Reading empty object with id " + id);
         Object result = null;
 
         get(endpoint + "/" + id).then().statusCode(404).assertThat().body(equalTo(""));
@@ -390,7 +389,7 @@ public class CrudHelper {
     }
 
     public static void readEmptyObjectWithNull(Class restObjectClass, String id) {
-        //log.info("Reading empty object with id " + id);
+        //logger.info("Reading empty object with id " + id);
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -404,7 +403,7 @@ public class CrudHelper {
     }
 
     public static ArrayList<BasicObject> readAllObjects(Class restObjectClass) {
-        //log.info("Reading all objects");
+        //logger.info("Reading all objects");
         ArrayList<BasicObject> arrayList = new ArrayList<BasicObject>();
         Object object = null;
         try {
@@ -440,7 +439,7 @@ public class CrudHelper {
 
 
     public static ArrayList<BasicObject> readAllObjects(BasicObject basicObject) {
-        //log.info("Reading all objects");
+        //logger.info("Reading all objects");
         ArrayList<BasicObject> arrayList = new ArrayList<BasicObject>();
 
         String response = get(basicObject.endpoint).asString();
@@ -451,7 +450,7 @@ public class CrudHelper {
     }
 
     public static Object readJsonObject(Class restObjectClass, Class classOfT) {
-        //log.info("Reading all objects");
+        //logger.info("Reading all objects");
         BasicObject result;
         Object object = null;
         try {
@@ -467,7 +466,7 @@ public class CrudHelper {
 
     public static ArrayList<BasicObject> readAllObjectsWithPagination(Class restObjectClass, String
             pageSize, String startIndex) {
-        //log.info("Reading all objects with pagination");
+        //logger.info("Reading all objects with pagination");
         ArrayList<BasicObject> arrayList = new ArrayList<BasicObject>();
         Object object = null;
         try {
@@ -485,7 +484,7 @@ public class CrudHelper {
     }
 
     public static void readAllObjectsWithInvalidPagination(Class restObjectClass, String pageSize, String startIndex) {
-        //log.info("Reading all objects with pagination");
+        //logger.info("Reading all objects with pagination");
         ArrayList<BasicObject> arrayList = new ArrayList<BasicObject>();
         Object object = null;
         try {
@@ -500,7 +499,7 @@ public class CrudHelper {
     }
 
     public static ArrayList<BasicObject> readAllObjectsWithFilterAndPagination(Class restObjectClass, String filter, String pageSize, String startIndex) {
-        //log.info("Reading all objects");
+        //logger.info("Reading all objects");
         ArrayList<BasicObject> arrayList = new ArrayList<BasicObject>();
         Object object = null;
         try {
@@ -518,7 +517,7 @@ public class CrudHelper {
     }
 
     public static ArrayList<BasicObject> readAllObjectsWithFilter(Class restObjectClass, String filter) {
-        //log.info("Reading all objects");
+        //logger.info("Reading all objects");
         ArrayList<BasicObject> arrayList = new ArrayList<BasicObject>();
         Object object = null;
         try {
@@ -549,7 +548,7 @@ public class CrudHelper {
     }
 
     public static void readAllObjectsWithInvalidFilter(Class restObjectClass, String filter) {
-        //log.info("Reading all objects");
+        //logger.info("Reading all objects");
         ArrayList<BasicObject> arrayList = new ArrayList<BasicObject>();
         Object object = null;
         try {
@@ -565,7 +564,7 @@ public class CrudHelper {
     }
 
     public static BasicObject deleteSingleObject(Class restObjectClass, String id) {
-        //log.info("Removing single object with id " + id);
+        //logger.info("Removing single object with id " + id);
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -602,7 +601,7 @@ public class CrudHelper {
     }
 
     public static BasicObject deleteSingleObject(Class restObjectClass, String id, Header header) {
-        //log.info("Removing single object with id " + id);
+        //logger.info("Removing single object with id " + id);
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -616,7 +615,7 @@ public class CrudHelper {
     }
 
     public static void deleteNotAllowedObject(Class restObjectClass, String id) {
-        //log.info("Removing single object with id " + id);
+        //logger.info("Removing single object with id " + id);
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -630,7 +629,7 @@ public class CrudHelper {
     }
 
     public static void deleteEmptyObject(Class restObjectClass, String id) {
-        //log.info("Removing single object with id " + id);
+        //logger.info("Removing single object with id " + id);
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -644,7 +643,7 @@ public class CrudHelper {
     }
 
     public static void deleteAllObjects(Class restObjectClass) {
-        //log.info("Removing all objects");
+        //logger.info("Removing all objects");
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -658,7 +657,7 @@ public class CrudHelper {
     }
 
     public static void deleteAllObjectsNotAllowed(Class restObjectClass) {
-        //log.info("Removing all objects");
+        //logger.info("Removing all objects");
         Object result = null;
         try {
             Class<?> clazz = Class.forName(restObjectClass.getName());
@@ -688,7 +687,7 @@ public class CrudHelper {
         } else {
             jsonObject = (JsonObject) parser.parse("{\"" + field + "\":\"" + value + "\"}");
         }
-        //log.info("Creating an object " + jsonObject);
+        //logger.info("Creating an object " + jsonObject);
         Response response = given().body(jsonObject).when().patch(((BasicObject) result).endpoint + "/" + id);
         return (BasicObject) getObjectAndPropagateError(response, restObjectClass);
     }
@@ -710,7 +709,7 @@ public class CrudHelper {
         } else {
             jsonObject = (JsonObject) parser.parse("{\"" + field + "\":\"" + value + "\"}");
         }
-        //log.info("Creating an object " + jsonObject);
+        //logger.info("Creating an object " + jsonObject);
         result = given().body(jsonObject).header(header).when().patch(((BasicObject) result).endpoint + "/" + id).as(restObjectClass);
 
         return (BasicObject) result;
@@ -788,7 +787,7 @@ public class CrudHelper {
             jsonObject = (JsonObject) parser.parse("{\"" + field + "\":\"" + value + "\"}");
         }
         jsonObject.addProperty("id", id);
-        //log.info("Creating an object " + jsonObject);
+        //logger.info("Creating an object " + jsonObject);
         result = given().body(jsonObject).header(header).when().put(((BasicObject) result).endpoint + "/" + id).as(restObjectClass);
 
         return (BasicObject) result;
@@ -799,7 +798,7 @@ public class CrudHelper {
         JsonObject jsonObject = (JsonObject) parser.parse(basicObject.toJson());
         jsonObject.addProperty("id", id);
 
-        log.info("PUT ------>" + jsonObject);
+        logger.info("PUT ------>" + jsonObject);
         return given().body(jsonObject).when().put((basicObject).endpoint + "/" + id).as(basicObject.getClass());
     }
 
@@ -807,7 +806,7 @@ public class CrudHelper {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(basicObject.toJson());
         jsonObject.addProperty("id", id);
-        //log.info("Creating an object " + jsonObject);
+        //logger.info("Creating an object " + jsonObject);
         return given().body(jsonObject).when().put((basicObject).endpoint + "/" + id);
     }
 
@@ -815,7 +814,7 @@ public class CrudHelper {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(basicObject.toJson());
         jsonObject.addProperty("id", id);
-        //log.info("Creating an object " + jsonObject);
+        //logger.info("Creating an object " + jsonObject);
         return given().body(jsonObject).header(header).when().put((basicObject).endpoint + "/" + id).as(basicObject.getClass());
     }
 
@@ -823,7 +822,7 @@ public class CrudHelper {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(basicObject.toJson());
 
-        log.info("Creating an object " + jsonObject);
+        logger.info("Creating an object " + jsonObject);
         return given().body(jsonObject).when().patch((basicObject).endpoint + "/" + id).as(basicObject.getClass());
     }
 
@@ -831,7 +830,7 @@ public class CrudHelper {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(basicObject.toJson());
 
-        //log.info("Creating an object " + jsonObject);
+        //logger.info("Creating an object " + jsonObject);
         return given().body(jsonObject).when().patch((basicObject).endpoint + "/" + id);
     }
 
@@ -839,7 +838,7 @@ public class CrudHelper {
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = (JsonObject) parser.parse(basicObject.toJson());
 
-        //log.info("Creating an object " + jsonObject);
+        //logger.info("Creating an object " + jsonObject);
         return given().body(jsonObject).header(header).when().patch((basicObject).endpoint + "/" + id).as(basicObject.getClass());
     }
 
@@ -887,8 +886,8 @@ public class CrudHelper {
         } catch (Exception e) {
             System.err.println(e.fillInStackTrace());
         }
-        //log.info("POST ddr" + ((BasicObject) result).endpoint);
-        //log.info(body);
+        //logger.info("POST ddr" + ((BasicObject) result).endpoint);
+        //logger.info(body);
         Response response = given().body(body).post("ddr/" + ((BasicObject) result).endpoint);
 //        return (DdrImportResult<Contact>) response.body().as(DdrImportResult.class);
         return response.body().asString();
