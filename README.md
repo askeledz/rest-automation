@@ -4,21 +4,21 @@
 
 # JDK8U152
 *****************************
-http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-JAVA 1.8_152 !!!!!!!
+- http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+- JAVA 1.8_152 !!!!!!!
 
 
 vi .zshrc
 # Path to JAVA_HOME
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
-export PATH=$PATH:$JAVA_HOME
+- export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+- export PATH=$PATH:$JAVA_HOME
 
 
 
 # Certificat JVM
 *******************
-HowTo:
-https://confluence.atlassian.com/kb/how-to-import-a-public-ssl-certificate-into-a-jvm-867025849.html
+- HowTo:
+- https://confluence.atlassian.com/kb/how-to-import-a-public-ssl-certificate-into-a-jvm-867025849.html
 
 
 - 1.Run program called: portecle.jnlp
@@ -38,25 +38,25 @@ You may hit this error: If so, hit OK, and then accept the certificate as truste
 
 # Set up IPs in hosts file (POSTMAN and INTELLIJ IDE uses localhost or hostname)
 *******************
-PING hostname (xxx.xxx.xxx.xxx): 56 data bytes
-Terminal --->
-sudo nano /etc/hosts           
-Password:*******
+- PING hostname (xxx.xxx.xxx.xxx): 56 data bytes
+- Terminal --->
+- sudo nano /etc/hosts           
+- Password:*******
 
-#127.0.0.1      localhost
-#PROD ENV
-#xxx.xxx.xxx.xxx  localhost
+- #127.0.0.1      localhost
+- #PROD ENV
+- #xxx.xxx.xxx.xxx  localhost
 
-ctrl+O  Enter (Save)
-ctrl+X  (Exit)
+- ctrl+O  Enter (Save)
+- ctrl+X  (Exit)
 
-sudo killall -HUP mDNSResponder (clear DNS cache)
+- sudo killall -HUP mDNSResponder (clear DNS cache)
 
 
 # MAVEN
 **************************
-mvn clean test -pl RESTtest_functional -am -DtestSuite=testsuite.xml
-mvn clean test -pl RESTtest_functional -am -DtestSuite=singletest.xml > ~/Documents/`date +\%Y\%m\%d\%H\%M\%S`-REST_API_Tests_running.log 2>&1
+- mvn clean test -pl RESTtest_functional -am -DtestSuite=testsuite.xml
+- mvn clean test -pl RESTtest_functional -am -DtestSuite=singletest.xml > ~/Documents/`date +\%Y\%m\%d\%H\%M\%S`-REST_API_Tests_running.log 2>&1
 
 
 # REPORTING
